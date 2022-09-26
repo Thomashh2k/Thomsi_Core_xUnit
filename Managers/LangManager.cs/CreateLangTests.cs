@@ -15,19 +15,22 @@ namespace Headless.Core.xUnit.Managers.LangManager.cs
     {
         private Core.Managers.LangManager LangManager { get; set; }
         private Mock<DB.HeadlessDbContext> MockedDbContext { get; set; }
-        private Mock<DbSet<Lang>> mockLangDbSet { get; set; }
+        private Mock<DbSet<Lang>> MockLangDbSet { get; set; }
         public CreateLangTests()
         {
-            mockLangDbSet = new Mock<DbSet<Lang>>();
+            MockLangDbSet = new Mock<DbSet<Lang>>();
+
             MockedDbContext = new Mock<DB.HeadlessDbContext>();
-            MockedDbContext.Setup(l => l.Languages).Returns(mockLangDbSet.Object);
+            MockedDbContext.Setup(l => l.Languages).Returns(MockLangDbSet.Object);
+
             LangManager = new Core.Managers.LangManager(MockedDbContext.Object);
+
         }
 
         [Fact]
         public async void CreatePage_Returns_Lang_Object()
         {
-            CreateLanuagePL mockPL = new CreateLanuagePL
+            LanuagePL mockPL = new LanuagePL
             {
                 LanguageIdentifier = "de-DE",
                 LanguageName = "German"
@@ -35,6 +38,9 @@ namespace Headless.Core.xUnit.Managers.LangManager.cs
 
             Lang result = await LangManager.CreateLang(mockPL);
 
+            MockedDbContext.Verify(m => m.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
+            MockLangDbSet.Verify(m => m.Add(It.IsAny<Lang>()), Times.Once());
+            MockLangDbSet.Verify(m => m.Add(It.IsAny<Lang>()), Times.Once());
             Assert.IsType<Lang>(result);
         }
     }

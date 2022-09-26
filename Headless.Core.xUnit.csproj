@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Headless.Core\Headless.Core.csproj" />
+    <ProjectReference Include="..\Thomsi_Core\Headless.Core.csproj" />
+    <ProjectReference Include="..\Thomsi_DB\Headless.DB.csproj" />
   </ItemGroup>
 
 </Project>
