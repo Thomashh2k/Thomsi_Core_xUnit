@@ -39,9 +39,7 @@ namespace Headless.Core.xUnit.Managers.PageManager.cs
             {
                 Id = pageID,
                 Title = "TestTitle",
-                Body = "<p>Test</p>",
                 Route = "/test",
-                LangId = langID
             };
 
 

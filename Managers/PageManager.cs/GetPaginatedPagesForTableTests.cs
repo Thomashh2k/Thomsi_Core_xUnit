@@ -40,25 +40,19 @@ namespace Headless.Core.xUnit.Managers.PageManager.cs
             {
                 Id = Guid.NewGuid(),
                 Title = "TestTitle1",
-                Body = "<p>Test1</p>",
                 Route = "/test1",
-                LangId = langID
             };
             Page page2 = new Page
             {
                 Id = Guid.NewGuid(),
                 Title = "TestTitle2",
-                Body = "<p>Test2</p>",
                 Route = "/test1",
-                LangId = langID
             };
             Page page3 = new Page
             {
                 Id = Guid.NewGuid(),
                 Title = "TestTitle3",
-                Body = "<p>Test3</p>",
                 Route = "/test1",
-                LangId = langID
             };
             MockedPages = new List<Page>
             {
